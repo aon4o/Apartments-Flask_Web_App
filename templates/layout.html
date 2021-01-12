@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+  <title>Apartments - {% block title %}{% endblock %}</title>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <div class="navbar">
+    <a class="left" href="#home">Home</a>
+    <a class="left" href="#news">News</a>
+    <a class="left" href="#contact">Contact</a>
+    <a class="left" href="#about">About</a>
+    <a class="right" href="#login">Login</a>
+  </div>
+  {% block body %}{% endblock %}
+</body>
+</html>
+

@@ -1,0 +1,41 @@
+/* Main layout style */
+body {
+  background-color: #f2a7ff;
+}
+
+/* Navigation bar style */
+.navbar {
+  border-radius: 4px;
+  background-color: #ff45f4;
+  overflow: hidden;
+  border: 2px solid #ff45f4;
+}
+
+.navbar a {
+  border-radius: 8px;
+  color: #ffffff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a.left {
+  border-right: solid #fa89f4 4px;
+  float: left;
+}
+
+.navbar a.right {
+  border-left: solid #fa89f4 4px;
+  float: right;
+}
+
+.navbar a.active {
+  background-color: #fa89f4;
+  color: #ffffff;
+}
+
+.navbar a:hover {
+  background-color: #fa89f4;
+  color: black;
+}
