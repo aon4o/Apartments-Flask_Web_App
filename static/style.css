@@ -39,11 +39,3 @@ body {
   background-color: #fa89f4;
   color: black;
 }
-
-/* Style for the main part of the page */
-.navbar {
-  border-radius: 4px;
-  background-color: #ff45f4;
-  overflow: hidden;
-  border: 2px solid #ff45f4;
-}
