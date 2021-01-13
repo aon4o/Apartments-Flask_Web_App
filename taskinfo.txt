@@ -1,6 +1,0 @@
-- REST API for  CRUD operations (attraction)
-- UI for CRUD operations
-- Add ability to add and rate the apartment. Write comment/review for attraction
-
-Към всички проекти има обект, който трябва да има "REST API for  CRUD operations".
-Този обект трябва да има поне 5 полета, в някои случаи са и повече. Той трябва да е реалистичен.
