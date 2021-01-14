@@ -7,11 +7,11 @@
 {% endblock head %}
 
 {% block body %}
-  <form class="login" method="post" action="{{ url_for('login') }}">
+  <form class="register" method="post" action="{{ url_for('register') }}">
     {{ form.hidden_tag() }}
     <label>Username: </label>{{ form.username }}
+    <label>Email: </label>{{ form.email }}
     <label>Password: </label>{{ form.password }}
-    <label>Remember me: </label>{{ form.remember }}
-    <button type="submit">Log In</button>
+    <button type="submit">Register</button>
   </form>
 {% endblock body %}

@@ -310,3 +310,4 @@ fabric.properties
 # profiling data
 
 # End of https://www.toptal.com/developers/gitignore/api/flask,pycharm,python
+database.db

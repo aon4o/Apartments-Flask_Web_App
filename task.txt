@@ -10,6 +10,6 @@
 6. Трябва да има малка структура в базата с приложенения(фиксиран брой, предварително известни и хардкоднати в базата данни.)
 
 9. Apartments platform(inspired by airbnb)
-- REST API for  CRUD operations (attraction)
+- REST API for  CRUD operations (Apartments)
 - UI for CRUD operations
-- Add ability to add and rate the apartment. Write comment/review for attraction
+- Add ability to add and rate the apartment. Write comment/review for apartment
