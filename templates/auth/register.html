@@ -9,9 +9,9 @@
 {% block body %}
   <form class="register" method="post" action="{{ url_for('register') }}">
     {{ form.hidden_tag() }}
-    <label>Username: </label>{{ form.username }}
-    <label>Email: </label>{{ form.email }}
-    <label>Password: </label>{{ form.password }}
+    <label>Username: </label><br>{{ form.username }}<br>
+    <label>Email: </label><br>{{ form.email }}<br>
+    <label>Password: </label><br>{{ form.password }}<br>
     <button type="submit">Register</button>
   </form>
 {% endblock body %}
