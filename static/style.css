@@ -1,14 +1,14 @@
 /* Main layout style */
 body {
-  background-color: #f2a7ff;
+  background-color: #6bb0fa;
 }
 
 /* Navigation bar style */
 .navbar {
   border-radius: 4px;
-  background-color: #ff45f4;
+  background-color: #7e6bfa;
   overflow: hidden;
-  border: 2px solid #ff45f4;
+  border: 2px solid #7e6bfa;
 }
 
 .navbar a {
@@ -21,26 +21,91 @@ body {
 }
 
 .navbar a.left {
-  border-right: solid #fa89f4 4px;
+  border-right: solid #fafff4 4px;
   float: left;
 }
 
 .navbar a.right {
-  border-left: solid #fa89f4 4px;
+  border-left: solid #fafff4 4px;
   float: right;
 }
 
 .navbar a.active {
-  background-color: #fa89f4;
+  background-color: #fafff4;
   color: #ffffff;
 }
 
 .navbar a:hover {
-  background-color: #fa89f4;
+  background-color: #fafff4;
   color: black;
 }
 
 /* Login and Register forms style */
-form .login {
 
+.login {
+  background-color: #D0D0D0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 150%;
+  width: auto;
+  padding: 10px 10px;
+  margin: auto;
+  display: inline-block;
+  border: 2px solid #000000;
+  border-radius: 50px;
 }
+
+.register {
+  background-color: #D0D0D0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  float: center;
+  text-align: center;
+  font-size: 150%;
+  width: auto;
+  padding: 10px 10px;
+  margin: auto;
+  display: inline-block;
+  border: 2px solid #000000;
+  border-radius: 50px;
+}
+
+
+/* Text box and button styles */
+input[type=text]{
+  padding: 1px 1px;
+  margin: auto;
+  display: inline-block;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  width: 250px;
+  height: 25px;
+}
+
+
+input[type=password]{
+  padding: 1px 1px;
+  margin: auto;
+  display: inline-block;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  width: 250px;
+  height: 25px;
+}
+
+button[type=submit]{
+  padding: 1px 1px;
+  margin: 20px;
+  display: inline-block;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  width: 90px;
+  height: 30px;
+  font-size: large;
+}
+

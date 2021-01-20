@@ -9,9 +9,9 @@
 {% block body %}
   <form class="login" method="post" action="{{ url_for('login') }}">
     {{ form.hidden_tag() }}
-    <label>Username: </label>{{ form.username }}
-    <label>Password: </label>{{ form.password }}
-    <label>Remember me: </label>{{ form.remember }}
+    <label>Username: </label><br>{{ form.username }}<br>
+    <label>Password: </label><br>{{ form.password }}<br>
+    <label>Remember me: </label>{{ form.remember }}<br>
     <button type="submit">Log In</button>
   </form>
 {% endblock body %}
