@@ -7,6 +7,7 @@ from login_manager import login_manager, login_required, login_user, \
     logout_user, current_user
 import logging
 
+db.create_all()
 logging.basicConfig(filename='logs.log',
                     format='%(levelname)s  %(asctime)s : %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
@@ -15,22 +16,26 @@ logging.basicConfig(filename='logs.log',
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
-    
-    if request.method == 'GET':
-        return render_template('auth/register.html', form=form)
-    elif request.method == 'POST':
-        if form.validate_on_submit():
-            new_user = User(
-                username=form.username.data,
-                email=form.email.data,
-                password=generate_password_hash(form.password.data,
-                                                method='sha256')
-            )
+    if form.validate_on_submit():
+        new_user = User(
+            username=form.username.data,
+            email=form.email.data,
+            password=generate_password_hash(form.password.data,
+                                            method='sha256')
+        )
+        if User.query.filter_by(username=form.username.data).first():
+            flash("Username already taken!")
+        elif User.query.filter_by(email=form.email.data).first():
+            flash("Email already taken!")
+        else:
             db.session.add(new_user)
             db.session.commit()
             login_user(User.query.filter_by(email=form.email.data).first(),
                        remember=False)
+            flash("Registered Successfully!")
             return redirect(url_for('index'))
+        
+    return render_template('auth/register.html', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -41,10 +46,12 @@ def login():
         if user:
             if check_password_hash(user.password, form.password.data):
                 login_user(user, remember=form.remember.data)
-            
+                flash("Logged in Successfully!")
                 return redirect(url_for('index'))
-        
-        return '<h1>Invalid Username or Password!'
+            else:
+                flash("Invalid Password!")
+        else:
+            flash("Invalid Username!")
     
     return render_template('auth/login.html', form=form)
 
