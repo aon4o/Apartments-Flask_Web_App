@@ -1,8 +1,8 @@
 from app_config import app
 from flask import url_for, request, redirect, render_template, flash
-from database import db, User
+from database import db, User, Apartment, Comment
 from forms import generate_password_hash, check_password_hash, \
-    LoginForm, RegistrationForm
+    LoginForm, RegistrationForm, ApartmentForm
 from login_manager import login_manager, login_required, login_user, \
     logout_user, current_user
 import logging
@@ -13,6 +13,23 @@ logging.basicConfig(filename='logs.log',
                     datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 
 
+# BASIC NAVIGATION
+@app.route('/home')
+def index():
+    return render_template('index.html')
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+
+# AUTHENTICATION
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
@@ -34,7 +51,7 @@ def register():
                        remember=False)
             flash("Registered Successfully!")
             return redirect(url_for('index'))
-        
+    
     return render_template('auth/register.html', form=form)
 
 
@@ -63,21 +80,49 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/home')
-def index():
-    return render_template('index.html')
-
-
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-
-@app.route('/apartments')
+# APARTMENTS
+@app.route('/apartments/index')
 def apartments():
-    return render_template('apartments.html')
+    all_apartments = Apartment.query.all()
+    return render_template('apartments/index.html', apartments=all_apartments)
 
 
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
+@app.route('/apartments/create', methods=['GET', 'POST'])
+def apartment_create():
+    form = ApartmentForm()
+    if form.validate_on_submit():
+        new_apartment = Apartment(
+            name=form.name.data,
+            location=form.location.data,
+            description=form.description.data
+        )
+        if Apartment.query.filter_by(location=form.location.data).first():
+            flash("Apartment location already taken!")
+        else:
+            db.session.add(new_apartment)
+            db.session.commit()
+            apartment = Apartment.query.filter_by(name=form.name.data).first()
+            flash("Apartment added Successfully!")
+            return redirect(url_for('apartment_show',
+                                    apartment_id=apartment.id))
+    
+    return render_template('apartments/create.html', form=form)
+
+
+@app.route('/apartments/<int:apartment_id>/show')
+def apartment_show(apartment_id):
+    apartment = Apartment.query.filter_by(id=apartment_id).first()
+    if not apartment:
+        return render_template('errors/404.html'), 404
+    return render_template('apartments/show.html', apartment=apartment)
+
+
+# ERROR CODE HANDLERS
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('errors/404.html'), 404
+
+
+@app.errorhandler(405)
+def page_not_found(e):
+    return render_template('errors/405.html'), 405

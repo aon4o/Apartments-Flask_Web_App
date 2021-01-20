@@ -13,14 +13,16 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(100), nullable=False)
 
 
-class Apartments(db.Model, UserMixin):
+class Apartment(db.Model, UserMixin):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.VARCHAR(255), nullable=False)
+    location = db.Column(db.VARCHAR(255), nullable=False, unique=True)
+    description = db.Column(db.TEXT, nullable=False)
     
     
-class Comments(db.Model, UserMixin):
+class Comment(db.Model, UserMixin):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
-    apartment_id = db.Column(db.Integer, db.ForeignKey(Apartments.id),
+    apartment_id = db.Column(db.Integer, db.ForeignKey(Apartment.id),
                              nullable=False)
     comment = db.Column(db.Text, nullable=False)

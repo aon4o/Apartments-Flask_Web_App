@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField
+from wtforms import StringField, TextAreaField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Length
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -19,3 +19,12 @@ class LoginForm(FlaskForm):
     password = PasswordField('password',
                              validators=[InputRequired(), Length(min=8)])
     remember = BooleanField('remember me')
+
+
+class ApartmentForm(FlaskForm):
+    name = TextAreaField('name',
+                         validators=[InputRequired(), Length(min=3, max=255)])
+    location = TextAreaField('location',
+                             validators=[InputRequired(), Length(min=10)])
+    description = TextAreaField('description',
+                                validators=[InputRequired(), Length(min=10)])
