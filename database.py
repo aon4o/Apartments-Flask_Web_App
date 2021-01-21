@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
 
 class Apartment(db.Model, UserMixin):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    user_id = db.Column(db.Integer, nullable=False)
     name = db.Column(db.VARCHAR(255), nullable=False)
     location = db.Column(db.VARCHAR(255), nullable=False, unique=True)
     description = db.Column(db.TEXT, nullable=False)

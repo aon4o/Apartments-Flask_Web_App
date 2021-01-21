@@ -97,6 +97,7 @@ def apartment_create():
     if form.validate_on_submit():
         new_apartment = Apartment(
             name=form.name.data,
+            user_id=form.user_id.data,
             location=form.location.data,
             description=form.description.data
         )
@@ -117,12 +118,13 @@ def apartment_create():
 def apartment_show(apartment_id):
     apartment = Apartment.query.filter_by(id=apartment_id).first()
     comments = Comment.query.filter_by(apartment_id=apartment_id).all()
+    user = User.query.filter_by(id=apartment.user_id).first()
     comment_form = CommentForm()
     if not apartment:
         return render_template('errors/404.html'), 404
     return render_template(
         'apartments/show.html', apartment=apartment,
-        comments=comments, form=comment_form)
+        comments=comments, form=comment_form, user=user)
 
 
 # COMMENTS
