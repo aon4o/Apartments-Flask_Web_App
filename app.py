@@ -91,6 +91,7 @@ def apartments():
 
 
 @app.route('/apartments/create', methods=['GET', 'POST'])
+@login_required
 def apartment_create():
     form = ApartmentForm()
     if form.validate_on_submit():
