@@ -100,14 +100,19 @@ body {
 }
 
 .login button[type=submit]{
-  padding: 1px 1px;
-  margin: 20px;
-  display: inline-block;
-  border: 1px groove #000000;
-  border-radius: 5px;
-  width: 90px;
-  height: 30px;
+  background-color: #7e6bfa;
+  border-right: 4px solid #fafff4;
+  border-left: 4px solid #fafff4;
+  border-top: 2px solid #fafff4;
+  border-bottom: 2px solid #fafff4;
+  border-radius: 8px;
   font-size: large;
+  color: #fafff4;
+}
+
+.login button[type=submit]:hover{
+  background-color: #fafff4;
+  color: black;
 }
 
 .register input[type=text]{
@@ -132,14 +137,19 @@ body {
 }
 
 .register button[type=submit]{
-  padding: 1px 1px;
-  margin: 20px;
-  display: inline-block;
-  border: 1px groove #000000;
-  border-radius: 5px;
-  width: 90px;
-  height: 30px;
+  background-color: #7e6bfa;
+  border-right: 4px solid #fafff4;
+  border-left: 4px solid #fafff4;
+  border-top: 2px solid #fafff4;
+  border-bottom: 2px solid #fafff4;
+  border-radius: 8px;
   font-size: large;
+  color: #fafff4;
+}
+
+.register button[type=submit]:hover{
+  background-color: #fafff4;
+  color: black;
 }
 
 
