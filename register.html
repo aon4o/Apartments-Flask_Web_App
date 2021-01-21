@@ -1,0 +1,17 @@
+{% extends "layouts/layout.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% block head %}
+
+{% endblock head %}
+
+{% block body %}
+  <form class="register" method="post" action="{{ url_for('register') }}">
+    {{ form.hidden_tag() }}
+    <label>Username: </label><br>{{ form.username }}<br>
+    <label>Email: </label><br>{{ form.email }}<br>
+    <label>Password: </label><br>{{ form.password }}<br>
+    <button type="submit">Register</button>
+  </form>
+{% endblock body %}
