@@ -4,16 +4,27 @@
 
 {% endblock head %}
 {% block body %}
+  <div class="body">
   <a href="{{ url_for('apartment_create') }}">Add Apartment</a>
+  <hr>
   {% for apartment in apartments %}
+  <div class="apinlist">
     <table>
       <tbody>
         <tr>
           <td><a href="{{ url_for('apartment_show', apartment_id=apartment.id) }}">{{ apartment.name }}</a></td>
-          <td>{{ apartment.location }}</td>
-          <td>{{ apartment.description }}</td>
+        </tr>
+        <tr>
+          <td><hr></td>
+        </tr>
+        <tr>
+          <td>Address: {{ apartment.location }}</td>
         </tr>
       </tbody>
     </table>
+    </div>
+    <br>
+
   {% endfor %}
+    </div>
 {% endblock body %}

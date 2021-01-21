@@ -1,14 +1,14 @@
 {% extends "layouts/layout.html" %}
 {% block title %}Add Apartment{% endblock title %}
 {% block head %}
-
 {% endblock head %}
 {% block body %}
-  <form class="" method="post" action="{{ url_for('apartment_create') }}">
+
+  <form class="body" method="post" action="{{ url_for('apartment_create') }}">
     {{ form.hidden_tag() }}
-    <label>Name: </label><br>{{ form.name }}<br>
-    <label>Location: </label><br>{{ form.location }}<br>
-    <label>Description: </label><br>{{ form.description }}<br>
+    <label>Name: </label><br>{{ form.name(rows='3',cols='100') }}<br>
+    <label>Location: </label><br>{{ form.location (rows='5',cols='100')}}<br>
+    <label>Description: </label><br>{{ form.description (rows='10',cols='100')}}<br>
     <button type="submit">Add Apartment</button>
   </form>
 {% endblock body %}

@@ -4,9 +4,13 @@
 
 {% endblock head %}
 {% block body %}
+  <dir class="body">
   {% if current_user.is_authenticated %}
-    <h1>Welcome back, {{ current_user.username }}</h1>
+    <h1>Welcome back, {{ current_user.username }}!</h1>
   {% else %}
-    <h1>Welcome</h1>
+    <h1>Welcome!</h1>
   {% endif %}
+    <hr>
+    <h1>News:</h1>
+  </dir>
 {% endblock body %}

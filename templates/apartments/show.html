@@ -4,9 +4,11 @@
 
 {% endblock head %}
 {% block body %}
+  <div class="body">
   <p>{{ apartment.name }}</p>
-  <p>{{ apartment.location }}</p>
-  <p>{{ apartment.description }}</p>
+  <p>Address: {{ apartment.location }}</p>
+  <p>Description: <br>{{ apartment.description }}</p>
+    <hr>
   <div class="comments">
   {% if comments %}
     <p>Comments:</p>
@@ -18,8 +20,11 @@
 {#        <a href="{{ url_for('comment_delete', comment_id=comment.id) }}">Delete</a>#}
 {#      {% endif %}#}
     {% endfor %}
+    <hr>
   {% endif %}
+
   </div>
+
   <form action="{{ url_for('comment_create') }}" method="post">
     {% if comments %}
       <p>Add a Comment:</p>
@@ -29,7 +34,9 @@
     {{ form.csrf_token }}
     {{ form.user_id(value=current_user.get_id()) }}
     {{ form.apartment_id(value=apartment.id) }}
-    {{ form.comment(placeholder="Your Comment here!") }}
+    {{ form.comment(rows='5',cols='100') }}
+    <br>
     <button type="submit">Submit</button>
   </form>
+  </div>
 {% endblock body %}
