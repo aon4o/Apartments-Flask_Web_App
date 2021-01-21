@@ -4,9 +4,11 @@
 
 {% endblock head %}
 {% block body %}
+  <div class="body">
   {% if current_user.is_authenticated %}
-    <h1>Welcome back, {{ current_user.username }}</h1>
+    <h1>Welcome back, {{ current_user.username }}!</h1>
   {% else %}
-    <h1>Welcome</h1>
+    <h1>Welcome!</h1>
   {% endif %}
+  </div>
 {% endblock body %}

@@ -43,23 +43,24 @@ body {
 /* Login and Register forms style */
 
 .login {
-  background-color: #D0D0D0;
+  background-color: #7e6bfa;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   font-size: 150%;
+  color: white;
   width: auto;
   padding: 10px 10px;
   margin: auto;
   display: inline-block;
-  border: 2px solid #000000;
-  border-radius: 50px;
+  border: 3px solid #ffffff;
+  border-radius: 10px;
 }
 
 .register {
-  background-color: #D0D0D0;
+  background-color: #7e6bfa;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -67,45 +68,140 @@ body {
   float: center;
   text-align: center;
   font-size: 150%;
+  color: white;
   width: auto;
   padding: 10px 10px;
   margin: auto;
   display: inline-block;
-  border: 2px solid #000000;
-  border-radius: 50px;
+  border: 3px solid #ffffff;
+  border-radius: 10px;
 }
 
 
-/* Text box and button styles */
-input[type=text]{
+.login input[type=text]{
   padding: 1px 1px;
   margin: auto;
   display: inline-block;
-  border: 2px solid #000000;
+  border: 1px groove #000000;
   border-radius: 5px;
   width: 250px;
   height: 25px;
 }
 
 
-input[type=password]{
+.login input[type=password]{
   padding: 1px 1px;
   margin: auto;
   display: inline-block;
-  border: 2px solid #000000;
+  border: 1px groove #000000;
   border-radius: 5px;
   width: 250px;
   height: 25px;
 }
 
-button[type=submit]{
+.login button[type=submit]{
   padding: 1px 1px;
   margin: 20px;
   display: inline-block;
-  border: 2px solid #000000;
+  border: 1px groove #000000;
   border-radius: 5px;
   width: 90px;
   height: 30px;
   font-size: large;
 }
+
+.register input[type=text]{
+  padding: 1px 1px;
+  margin: auto;
+  display: inline-block;
+  border: 1px groove #000000;
+  border-radius: 5px;
+  width: 250px;
+  height: 25px;
+}
+
+
+.register input[type=password]{
+  padding: 1px 1px;
+  margin: auto;
+  display: inline-block;
+  border: 1px groove #000000;
+  border-radius: 5px;
+  width: 250px;
+  height: 25px;
+}
+
+.register button[type=submit]{
+  padding: 1px 1px;
+  margin: 20px;
+  display: inline-block;
+  border: 1px groove #000000;
+  border-radius: 5px;
+  width: 90px;
+  height: 30px;
+  font-size: large;
+}
+
+
+/*body part*/
+.body{
+  background-color: #7e6bfa;
+  font-size: large;
+  color: #ffffff;
+  width: 98.5%;
+  padding: 10px 10px;
+  margin-top: 1%;
+  display: inline-block;
+  border-radius: 10px;
+}
+.body a{
+  background-color: #7e6bfa;
+  border-radius: 8px;
+  color: #ffffff;
+  text-align: center;
+  padding: 5px 5px;
+  text-decoration: none;
+  font-size: large;
+}
+
+/*lines*/
+
+hr {
+ display: block;
+ height: 1px;
+ border: 0;
+ border-top: 2px solid #ffffff;
+ padding: 0;
+}
+
+/*apartments in the list*/
+.apinlist{
+  background-color: #6bb0fa;
+  font-size: large;
+  color: white;
+  width: 98.5%;
+  padding: 10px 10px;
+  margin-top: 1%;
+  display: inline-block;
+  border-radius: 8px;
+}
+
+.apinlist a{
+  background-color: #6bb0fa;
+  border-radius: 8px;
+  border-right: 4px solid #f0f0f0;
+  border-left: 4px solid #f0f0f0;
+  color: #fafff4;
+  text-align: center;
+  padding: 5px 5px;
+  text-decoration: none;
+  font-size: large;
+}
+
+.apinlist a:hover {
+  background-color: #fafff4;
+  color: black;
+}
+
+
 

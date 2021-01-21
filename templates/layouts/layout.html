@@ -15,18 +15,7 @@
   {% block head %}{% endblock %}
 </head>
 <body>
-{# FLASH MESSAGING #}
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <ul>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-        <a href=""></a>
-      </ul>
-    {% endif %}
-  {% endwith %}
-{# NAVIGATION BAR #}
+
   <div class="navbar">
     <a class="left" href="{{ url_for("index") }}">Home</a>
     <a class="left" href="{{ url_for("about") }}">About</a>
@@ -40,6 +29,18 @@
       <a class="right" href="{{ url_for("login") }}">Login</a>
     {% endif %}
   </div>
+  {# FLASH MESSAGING #}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        <a href=""></a>
+      </ul>
+    {% endif %}
+  {% endwith %}
+{# NAVIGATION BAR #}
   {% block body %}{% endblock %}
 </body>
 </html>
