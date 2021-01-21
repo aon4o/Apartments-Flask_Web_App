@@ -18,9 +18,11 @@ logging.basicConfig(filename='logs.log',
 def index():
     return render_template('index.html')
 
+
 @app.route('/')
 def redirect_to_home():
     return redirect(url_for('index'))
+
 
 @app.route('/about')
 def about():
@@ -127,6 +129,22 @@ def apartment_show(apartment_id):
         comments=comments, form=comment_form, user=user)
 
 
+@app.route('/apartments/delete', methods=['POST'])
+@login_required
+def apartment_delete():
+    apartment = Apartment.query.filter_by(
+        id=request.form.get('apartment_id')
+    ).first()
+    if current_user.id == apartment.user_id:
+        db.session.delete(apartment)
+        db.session.commit()
+        flash("Apartment deleted Successfully!")
+        return redirect(url_for("apartments"))
+    else:
+        flash("Operation not Permitted!")
+        return redirect(url_for('apartment_show', apartment_id=apartment.id))
+
+
 # COMMENTS
 @app.route('/comments/create', methods=['POST'])
 @login_required
@@ -143,9 +161,26 @@ def comment_create():
         flash("Comment added Successfully!")
     else:
         flash("Error adding the comment")
-
+    
     return redirect(url_for('apartment_show',
                             apartment_id=form.apartment_id.data))
+
+
+@app.route('/comments/delete', methods=['POST'])
+@login_required
+def comment_delete():
+    comment = Comment.query.filter_by(
+        id=request.form.get('comment_id')
+    ).first()
+    if current_user.id == comment.user_id:
+        db.session.delete(comment)
+        db.session.commit()
+        flash("Comment deleted Successfully!")
+    else:
+        flash("Operation not Permitted!")
+        
+    return redirect(url_for('apartment_show',
+                            apartment_id=request.form.get('apartment_id')))
 
 
 # ERROR CODE HANDLERS

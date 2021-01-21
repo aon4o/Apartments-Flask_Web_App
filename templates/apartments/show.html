@@ -5,8 +5,16 @@
 {% endblock head %}
 {% block body %}
   <div class="body">
-    <p>{{ apartment.name }}</p>
+    {% if apartment.user_id == current_user.id %}
+      <form action="{{ url_for("apartment_delete") }}" method="post">
+        <input name="apartment_id" type="hidden" value="{{ apartment.id }}">
+        <button style="float: right" type="submit">Delete Apartment</button>
+      </form>
+    {% endif %}
+    <h2>{{ apartment.name }}</h2>
     <p>added by {{ user.username }}</p>
+
+    <hr/>
     <p>Address: {{ apartment.location }}</p>
     <p>Description: <br>{{ apartment.description }}</p>
     <hr>
@@ -14,12 +22,15 @@
       {% if comments %}
         <p>Comments:</p>
         {% for comment in comments %}
+          {% if comment.user_id == current_user.id %}
+            {#<a href="{{ url_for('comment_edit', comment_id=comment.id) }}">Edit</a>#}
+            <form action="{{ url_for("comment_delete") }}" method="post">
+              <input name="apartment_id" type="hidden" value="{{ apartment.id }}">
+              <input name="comment_id" type="hidden" value="{{ comment.id }}">
+              <button style="float: right" type="submit">Delete Comment</button>
+            </form>
+          {% endif %}
           <p>{{ comment.comment }}</p>
-          {#      {% if comment.user_id == current_user.get_id() %}#}
-          {#        <p>edit</p>#}
-          {#        <a href="{{ url_for('comment_edit', comment_id=comment.id) }}">Edit</a>#}
-          {#        <a href="{{ url_for('comment_delete', comment_id=comment.id) }}">Delete</a>#}
-          {#      {% endif %}#}
         {% endfor %}
         <hr>
       {% endif %}
