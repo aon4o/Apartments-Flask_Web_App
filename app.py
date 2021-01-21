@@ -18,6 +18,10 @@ logging.basicConfig(filename='logs.log',
 def index():
     return render_template('index.html')
 
+@app.route('/')
+def redirect_to_home():
+    return redirect(url_for('index'))
+
 
 @app.route('/about')
 def about():
