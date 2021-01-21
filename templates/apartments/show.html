@@ -7,4 +7,29 @@
   <p>{{ apartment.name }}</p>
   <p>{{ apartment.location }}</p>
   <p>{{ apartment.description }}</p>
+  <div class="comments">
+  {% if comments %}
+    <p>Comments:</p>
+    {% for comment in comments %}
+      <p>{{ comment.comment }}</p>
+{#      {% if comment.user_id == current_user.get_id() %}#}
+{#        <p>edit</p>#}
+{#        <a href="{{ url_for('comment_edit', comment_id=comment.id) }}">Edit</a>#}
+{#        <a href="{{ url_for('comment_delete', comment_id=comment.id) }}">Delete</a>#}
+{#      {% endif %}#}
+    {% endfor %}
+  {% endif %}
+  </div>
+  <form action="{{ url_for('comment_create') }}" method="post">
+    {% if comments %}
+      <p>Add a Comment:</p>
+    {% else %}
+      <p>Be the First to add a Comment!</p>
+    {% endif %}
+    {{ form.csrf_token }}
+    {{ form.user_id(value=current_user.get_id()) }}
+    {{ form.apartment_id(value=apartment.id) }}
+    {{ form.comment(placeholder="Your Comment here!") }}
+    <button type="submit">Submit</button>
+  </form>
 {% endblock body %}

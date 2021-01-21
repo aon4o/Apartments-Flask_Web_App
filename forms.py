@@ -1,7 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, PasswordField, BooleanField
+from wtforms import StringField, TextAreaField, PasswordField, BooleanField,\
+    HiddenField
 from wtforms.validators import InputRequired, Length
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import current_user
 
 
 class RegistrationForm(FlaskForm):
@@ -28,3 +30,9 @@ class ApartmentForm(FlaskForm):
                              validators=[InputRequired(), Length(min=10)])
     description = TextAreaField('description',
                                 validators=[InputRequired(), Length(min=10)])
+    
+    
+class CommentForm(FlaskForm):
+    user_id = HiddenField('user_id', validators=[InputRequired()])
+    apartment_id = HiddenField('apartment_id', validators=[InputRequired()])
+    comment = TextAreaField('comment', validators=[InputRequired()])

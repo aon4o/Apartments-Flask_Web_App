@@ -2,7 +2,7 @@ from app_config import app
 from flask import url_for, request, redirect, render_template, flash
 from database import db, User, Apartment, Comment
 from forms import generate_password_hash, check_password_hash, \
-    LoginForm, RegistrationForm, ApartmentForm
+    LoginForm, RegistrationForm, ApartmentForm, CommentForm
 from login_manager import login_manager, login_required, login_user, \
     logout_user, current_user
 import logging
@@ -112,9 +112,34 @@ def apartment_create():
 @app.route('/apartments/<int:apartment_id>/show')
 def apartment_show(apartment_id):
     apartment = Apartment.query.filter_by(id=apartment_id).first()
+    comments = Comment.query.filter_by(apartment_id=apartment_id).all()
+    comment_form = CommentForm()
     if not apartment:
         return render_template('errors/404.html'), 404
-    return render_template('apartments/show.html', apartment=apartment)
+    return render_template(
+        'apartments/show.html', apartment=apartment,
+        comments=comments, form=comment_form)
+
+
+# COMMENTS
+@app.route('/comments/create', methods=['POST'])
+@login_required
+def comment_create():
+    form = CommentForm()
+    if form.validate_on_submit():
+        new_comment = Comment(
+            user_id=form.user_id.data,
+            apartment_id=form.apartment_id.data,
+            comment=form.comment.data
+        )
+        db.session.add(new_comment)
+        db.session.commit()
+        flash("Comment added Successfully!")
+    else:
+        flash("Error adding the comment")
+
+    return redirect(url_for('apartment_show',
+                            apartment_id=form.apartment_id.data))
 
 
 # ERROR CODE HANDLERS

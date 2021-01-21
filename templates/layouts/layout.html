@@ -3,14 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{#  {% with messages = get_flashed_messages() %}#}
-{#    {% if messages %}#}
-{#      <meta http-equiv="refresh" content="5">#}
-{#    {% endif %}#}
-{#  {% endwith %}#}
   <link rel="shortcut icon" type="image" href="{{ url_for('static', filename='favicon.ico') }}"/>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
-
   <title>Apartments - {% block title %}{% endblock %}</title>
   {% block head %}{% endblock %}
 </head>
@@ -22,7 +16,6 @@
         {% for message in messages %}
           <li>{{ message }}</li>
         {% endfor %}
-        <a href=""></a>
       </ul>
     {% endif %}
   {% endwith %}
