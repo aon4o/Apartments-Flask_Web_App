@@ -207,23 +207,26 @@ def comment_delete():
                             apartment_id=request.form.get('apartment_id')))
 
 
-@app.route('/apartments/comments/<int:apartment_id>/<int:comment_id>/edit', methods=['GET', 'POST'])
+@app.route('/apartments/comments/edit', methods=['POST'])
 @login_required
-def comment_edit(comment_id):
+def comment_edit():
+    comment_id = request.form.get('comment_id')
+    apartment_id = request.form.get('apartment_id')
     comment = Comment.query.filter_by(id=comment_id).first()
-    form = CommentForm()
     if not comment:
         return render_template('errors/404.html'), 404
-    if form.validate_on_submit() and comment.user_id == current_user.id:
-        db.session.query(Comment).filter(
-            Comment.id == comment.id).update({Comment.comment:form.comment.data})
+    if request.form.get('comment') and comment.user_id == current_user.id:
+        db.session.query(Comment).filter(Comment.id == comment_id).update({
+            Comment.comment: request.form.get('comment')
+        })
         db.session.commit()
         flash("Comment edited Successfully!")
         return redirect(url_for('apartment_show',
-                                apartment_id=apartment.id))
-
-    return render_template('comment_edit.html', comment=comment,
-                           form=form)
+                                apartment_id=apartment_id))
+    
+    return render_template('comments/edit.html',
+                           apartment_id=apartment_id,
+                           comment=comment)
 
 
 # ERROR CODE HANDLERS

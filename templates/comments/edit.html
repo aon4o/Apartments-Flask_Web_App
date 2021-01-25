@@ -1,0 +1,16 @@
+{% extends "layouts/layout.html" %}
+{% block title %}Edit Apartment{% endblock title %}
+{% block head %}
+
+{% endblock head %}
+{% block body %}
+  <form class="body" method="post" action="{{ url_for('comment_edit') }}">
+    <input type="hidden" name="apartment_id" value="{{ apartment_id }}">
+    <input type="hidden" name="comment_id" value="{{ comment.id }}">
+    <label>Comment: </label>
+    <br/>
+    <input name="comment" type="text" value="{{ comment.comment }}">
+    <br/>
+    <button type="submit">Edit Comment</button>
+  </form>
+{% endblock body %}
