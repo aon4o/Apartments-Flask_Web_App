@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, PasswordField, BooleanField, \
-    HiddenField
-from wtforms.validators import InputRequired, Length
+    HiddenField, FloatField
+from wtforms.validators import InputRequired, Length, NumberRange
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import current_user
 
@@ -43,6 +43,8 @@ class ApartmentForm(FlaskForm):
         validators=[InputRequired(), Length(min=10)],
         render_kw={"placeholder"
                    : "A description of your apartment. (Min. 10 symbols)"})
+    price = FloatField('price',
+                       validators=[InputRequired(), NumberRange(min=1)])
 
 
 class CommentForm(FlaskForm):

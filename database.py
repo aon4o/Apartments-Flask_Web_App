@@ -19,6 +19,7 @@ class Apartment(db.Model, UserMixin):
     name = db.Column(db.VARCHAR(255), nullable=False)
     location = db.Column(db.VARCHAR(255), nullable=False, unique=True)
     description = db.Column(db.TEXT, nullable=False)
+    price = db.Column(db.FLOAT, nullable=False)
     
     
 class Comment(db.Model, UserMixin):

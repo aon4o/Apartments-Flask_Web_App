@@ -101,7 +101,8 @@ def apartment_create():
             name=form.name.data,
             user_id=form.user_id.data,
             location=form.location.data,
-            description=form.description.data
+            description=form.description.data,
+            price=form.price.data
         )
         if Apartment.query.filter_by(location=form.location.data).first():
             flash("Apartment location already taken!")

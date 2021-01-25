@@ -13,11 +13,11 @@
     {% endif %}
     <h2>{{ apartment.name }}</h2>
     <p>added by {{ user.username }}</p>
-
     <hr/>
+    <p>Price: €{{ apartment.price }} per night.</p>
     <p>Address: {{ apartment.location }}</p>
     <p>Description: <br>{{ apartment.description }}</p>
-    <hr>
+    <hr/>
     <div class="comments">
       {% if comments %}
         <p>Comments:</p>
