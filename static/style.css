@@ -1,14 +1,14 @@
 /* Main layout style */
 body {
-  background-color: #6bb0fa;
+  background-color: #5ff58f;
 }
 
 /* Navigation bar style */
 .navbar {
   border-radius: 4px;
-  background-color: #7e6bfa;
+  background-color: #4988f5;
   overflow: hidden;
-  border: 2px solid #7e6bfa;
+  border: 2px solid #4988f5;
 }
 
 .navbar a {
@@ -43,7 +43,7 @@ body {
 /* Login and Register forms style */
 
 .login {
-  background-color: #7e6bfa;
+  background-color: #4988f5;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -60,7 +60,7 @@ body {
 }
 
 .register {
-  background-color: #7e6bfa;
+  background-color: #4988f5;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -82,8 +82,9 @@ body {
   padding: 1px 1px;
   margin: auto;
   display: inline-block;
-  border: 1px groove #000000;
+  border: 2px groove #000000;
   border-radius: 5px;
+  outline:none;
   width: 250px;
   height: 25px;
 }
@@ -93,14 +94,15 @@ body {
   padding: 1px 1px;
   margin: auto;
   display: inline-block;
-  border: 1px groove #000000;
+  border: 2px groove #000000;
   border-radius: 5px;
+  outline:none;
   width: 250px;
   height: 25px;
 }
 
 .login button[type=submit]{
-  background-color: #7e6bfa;
+  background-color: #4988f5;
   border-right: 4px solid #fafff4;
   border-left: 4px solid #fafff4;
   border-top: 2px solid #fafff4;
@@ -119,8 +121,9 @@ body {
   padding: 1px 1px;
   margin: auto;
   display: inline-block;
-  border: 1px groove #000000;
+  border: 2px groove #000000;
   border-radius: 5px;
+  outline:none;
   width: 250px;
   height: 25px;
 }
@@ -130,14 +133,15 @@ body {
   padding: 1px 1px;
   margin: auto;
   display: inline-block;
-  border: 1px groove #000000;
+  border: 2px groove #000000;
   border-radius: 5px;
+  outline:none;
   width: 250px;
   height: 25px;
 }
 
 .register button[type=submit]{
-  background-color: #7e6bfa;
+  background-color: #4988f5;
   border-right: 4px solid #fafff4;
   border-left: 4px solid #fafff4;
   border-top: 2px solid #fafff4;
@@ -155,7 +159,7 @@ body {
 
 /*body part*/
 .body{
-  background-color: #7e6bfa;
+  background-color: #4988f5;
   font-size: large;
   color: #fafff4;
   width: 98.5%;
@@ -166,10 +170,12 @@ body {
   border-radius: 10px;
 }
 .body a{
-  background-color: #7e6bfa;
+  background-color: #4988f5;
   border-radius: 8px;
   border-right: 4px solid #fafff4;
   border-left: 4px solid #fafff4;
+  border-top: 2px solid #fafff4;
+  border-bottom: 2px solid #fafff4;
   color: #fafff4;
   text-align: center;
   padding: 5px 5px;
@@ -182,12 +188,13 @@ body {
 }
 
 .body button[type=submit]{
-  background-color: #7e6bfa;
+  background-color: #4988f5;
   border-right: 4px solid #fafff4;
   border-left: 4px solid #fafff4;
   border-top: 2px solid #fafff4;
   border-bottom: 2px solid #fafff4;
   border-radius: 8px;
+  margin: 2px;
   font-size: large;
   color: #fafff4;
 
@@ -196,6 +203,10 @@ body {
 .body button[type=submit]:hover{
   background-color: #fafff4;
   color: black;
+  outline: none;
+}
+.body button[type=submit]:focus{
+  outline: none;
 }
 /*lines*/
 
@@ -207,9 +218,16 @@ hr {
  padding: 0;
 }
 
+textarea {
+    outline: none;
+    resize: none;
+    border: 2px groove #000000;
+    border-radius: 5px;
+}
+
 /*apartments in the list*/
 .apinlist{
-  background-color: #fafff4;
+  background-color: #F5F5F5;
   font-size: large;
   color: black;
   width: 98.5%;
@@ -220,11 +238,13 @@ hr {
 }
 
 .apinlist a{
-  background-color: #fafff4;
+  background-color: #F5F5F5;
   border-radius: 8px;
-  border-right: 4px solid #7e6bfa;
-  border-left: 4px solid #7e6bfa;
-  color: #7e6bfa;
+  border-right: 4px solid #4988f5;
+  border-left: 4px solid #4988f5;
+  border-top: 2px solid #F5F5F5;
+  border-bottom: 2px solid #F5F5F5;
+  color: #4988f5;
   text-align: center;
   padding: 5px 5px;
   text-decoration: none;
@@ -232,8 +252,10 @@ hr {
 }
 
 .apinlist a:hover {
-  background-color: #7e6bfa;
+  background-color: #4988f5;
   color: white;
+  border-top: 2px solid #4988f5;
+  border-bottom: 2px solid #4988f5;
 }
 
 
