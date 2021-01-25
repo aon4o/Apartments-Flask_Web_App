@@ -207,6 +207,25 @@ def comment_delete():
                             apartment_id=request.form.get('apartment_id')))
 
 
+@app.route('/apartments/comments/<int:apartment_id>/<int:comment_id>/edit', methods=['GET', 'POST'])
+@login_required
+def comment_edit(comment_id):
+    comment = Comment.query.filter_by(id=comment_id).first()
+    form = CommentForm()
+    if not comment:
+        return render_template('errors/404.html'), 404
+    if form.validate_on_submit() and comment.user_id == current_user.id:
+        db.session.query(Comment).filter(
+            Comment.id == comment.id).update({Comment.comment:form.comment.data})
+        db.session.commit()
+        flash("Comment edited Successfully!")
+        return redirect(url_for('apartment_show',
+                                apartment_id=apartment.id))
+
+    return render_template('comment_edit.html', comment=comment,
+                           form=form)
+
+
 # ERROR CODE HANDLERS
 @app.errorhandler(404)
 def page_not_found(e):

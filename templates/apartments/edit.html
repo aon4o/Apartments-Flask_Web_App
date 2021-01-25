@@ -7,9 +7,9 @@
     {{ form.csrf_token }}
     {{ form.user_id(value=current_user.get_id()) }}
     <label>Name: </label><br>{{ form.name(value=apartment.name, rows='3',cols='100') }}<br>
-    <label>Location: </label><br>{{ form.location (value=apartment.loacation, rows='5',cols='100')}}<br>
+    <label>Location: </label><br>{{ form.location (value=apartment.location, rows='5',cols='100')}}<br>
     <label>Description: </label><br>{{ form.description (value=apartment.description, rows='10',cols='100')}}<br>
-    <label>Price: </label><br>{{ form.price (value=apartment.price) }}<br>
+    <label>Price: </label><br>{{ form.price (value=apartment.price, rows='2',cols='30') }}<br><br>
     <button type="submit">Edit Apartment</button>
   </form>
 {% endblock body %}
