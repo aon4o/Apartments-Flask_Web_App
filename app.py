@@ -117,6 +117,29 @@ def apartment_create():
     return render_template('apartments/create.html', form=form)
 
 
+@app.route('/apartments/<int:apartment_id>/edit', methods=['GET', 'POST'])
+@login_required
+def apartment_edit(apartment_id):
+    apartment = Apartment.query.filter_by(id=apartment_id).first()
+    form = ApartmentForm()
+    if not apartment:
+        return render_template('errors/404.html'), 404
+    if form.validate_on_submit() and apartment.user_id == current_user.id:
+        db.session.query(Apartment).filter(
+            Apartment.id == apartment.id).update(
+            {Apartment.name: form.name.data,
+             Apartment.location: form.location.data,
+             Apartment.description: form.description.data,
+             Apartment.price: form.price.data})
+        db.session.commit()
+        flash("Apartment edited Successfully!")
+        return redirect(url_for('apartment_show',
+                                apartment_id=apartment.id))
+    
+    return render_template('apartments/edit.html', apartment=apartment,
+                           form=form)
+
+
 @app.route('/apartments/<int:apartment_id>/show')
 def apartment_show(apartment_id):
     apartment = Apartment.query.filter_by(id=apartment_id).first()
@@ -179,7 +202,7 @@ def comment_delete():
         flash("Comment deleted Successfully!")
     else:
         flash("Operation not Permitted!")
-        
+    
     return redirect(url_for('apartment_show',
                             apartment_id=request.form.get('apartment_id')))
 

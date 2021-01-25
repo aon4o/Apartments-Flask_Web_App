@@ -6,6 +6,7 @@
 {% block body %}
   <div class="body">
     {% if apartment.user_id == current_user.id %}
+      <a style="float: right" href="{{ url_for('apartment_edit', apartment_id=apartment.id) }}">Edit Apartment</a>
       <form action="{{ url_for("apartment_delete") }}" method="post">
         <input name="apartment_id" type="hidden" value="{{ apartment.id }}">
         <button style="float: right" type="submit">Delete Apartment</button>
@@ -23,7 +24,6 @@
         <p>Comments:</p>
         {% for comment in comments %}
           {% if comment.user_id == current_user.id %}
-            {#<a href="{{ url_for('comment_edit', comment_id=comment.id) }}">Edit</a>#}
             <form action="{{ url_for("comment_delete") }}" method="post">
               <input name="apartment_id" type="hidden" value="{{ apartment.id }}">
               <input name="comment_id" type="hidden" value="{{ comment.id }}">
