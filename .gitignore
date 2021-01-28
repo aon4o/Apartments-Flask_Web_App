@@ -313,3 +313,4 @@ fabric.properties
 database.db
 .idea
 .idea/
+/static/images

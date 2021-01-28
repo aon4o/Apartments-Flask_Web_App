@@ -4,13 +4,14 @@
 {% endblock head %}
 {% block body %}
 
-  <form class="body" method="post" action="{{ url_for('apartment_create') }}">
+  <form class="body" method="post" action="{{ url_for('apartment_create') }}" enctype="multipart/form-data">
     {{ form.csrf_token }}
     {{ form.user_id(value=current_user.get_id()) }}
     <label>Name: </label><br>{{ form.name(rows='3',cols='100') }}<br>
     <label>Location: </label><br>{{ form.location (rows='5',cols='100')}}<br>
     <label>Description: </label><br>{{ form.description (rows='10',cols='100')}}<br>
     <label>Price: </label><br>{{ form.price }}<br>
+    <label>Image: </label><br>{{ form.image }}<br>
     <button type="submit">Add Apartment</button>
   </form>
 {% endblock body %}

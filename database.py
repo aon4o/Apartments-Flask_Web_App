@@ -20,6 +20,7 @@ class Apartment(db.Model, UserMixin):
     location = db.Column(db.VARCHAR(255), nullable=False, unique=True)
     description = db.Column(db.TEXT, nullable=False)
     price = db.Column(db.FLOAT, nullable=False)
+    image = db.Column(db.VARCHAR(255), nullable=False)
     
     
 class Comment(db.Model, UserMixin):

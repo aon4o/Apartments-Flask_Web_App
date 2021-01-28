@@ -1,9 +1,11 @@
 from app_config import app
+import os
 from flask import url_for, request, redirect, render_template, flash
 from database import db, User, Apartment, Comment
 from forms import generate_password_hash, check_password_hash, \
-    LoginForm, RegistrationForm, ApartmentForm, CommentForm
-from login_manager import login_manager, login_required, login_user, \
+    LoginForm, RegistrationForm, ApartmentForm, CommentForm, secure_filename, \
+    images
+from login_manager import login_required, login_user, \
     logout_user, current_user
 import logging
 
@@ -97,12 +99,14 @@ def apartments():
 def apartment_create():
     form = ApartmentForm()
     if form.validate_on_submit():
+        filename = images.save(form.image.data)
         new_apartment = Apartment(
             name=form.name.data,
             user_id=form.user_id.data,
             location=form.location.data,
             description=form.description.data,
-            price=form.price.data
+            price=form.price.data,
+            image=filename
         )
         if Apartment.query.filter_by(location=form.location.data).first():
             flash("Apartment location already taken!")
@@ -113,6 +117,8 @@ def apartment_create():
             flash("Apartment added Successfully!")
             return redirect(url_for('apartment_show',
                                     apartment_id=apartment.id))
+    else:
+        flash('Invalid data!')
     
     return render_template('apartments/create.html', form=form)
 
@@ -125,16 +131,23 @@ def apartment_edit(apartment_id):
     if not apartment:
         return render_template('errors/404.html'), 404
     if form.validate_on_submit() and apartment.user_id == current_user.id:
+        filename = images.save(form.image.data)
         db.session.query(Apartment).filter(
-            Apartment.id == apartment.id).update(
-            {Apartment.name: form.name.data,
-             Apartment.location: form.location.data,
-             Apartment.description: form.description.data,
-             Apartment.price: form.price.data})
+            Apartment.id == apartment.id
+        ).update({
+            Apartment.name: form.name.data,
+            Apartment.location: form.location.data,
+            Apartment.description: form.description.data,
+            Apartment.price: form.price.data,
+            Apartment.image: filename
+            # todo file change not working
+        })
         db.session.commit()
         flash("Apartment edited Successfully!")
         return redirect(url_for('apartment_show',
                                 apartment_id=apartment.id))
+    else:
+        flash('Invalid data!')
     
     return render_template('apartments/edit.html', apartment=apartment,
                            form=form)

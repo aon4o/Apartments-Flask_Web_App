@@ -1,9 +1,15 @@
+from app_config import app
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import StringField, TextAreaField, PasswordField, BooleanField, \
     HiddenField, FloatField
 from wtforms.validators import InputRequired, Length, NumberRange
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import current_user
+from werkzeug.utils import secure_filename
+from flask_uploads import configure_uploads, UploadSet, IMAGES
+
+images = UploadSet('images', IMAGES)
+configure_uploads(app, images)
 
 
 class RegistrationForm(FlaskForm):
@@ -45,6 +51,8 @@ class ApartmentForm(FlaskForm):
                    : "A description of your apartment. (Min. 10 symbols)"})
     price = FloatField('price',
                        validators=[InputRequired(), NumberRange(min=1)])
+    image = FileField('image', validators=[
+        FileRequired(), FileAllowed(images, "Images only allowed!")])
 
 
 class CommentForm(FlaskForm):

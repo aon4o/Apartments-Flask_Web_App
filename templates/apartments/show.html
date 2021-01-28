@@ -18,6 +18,7 @@
     <p>Address: {{ apartment.location }}</p>
     <p>Price: €{{ apartment.price }} per night.</p>
     <p>Description: <br>{{ apartment.description }}</p>
+    <img src="{{ url_for('static', filename='images/' + apartment.image) }}" alt="{{ apartment.image }}">
     <hr/>
     <div class="comments">
       {% if comments %}
