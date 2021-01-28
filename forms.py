@@ -55,6 +55,25 @@ class ApartmentForm(FlaskForm):
         FileRequired(), FileAllowed(images, "Images only allowed!")])
 
 
+class ApartmentEditForm(FlaskForm):
+    name = TextAreaField(
+        'name',
+        validators=[InputRequired(), Length(min=3, max=255)],
+        render_kw={"placeholder": "Name for your apartment. (3-255 symbols)"})
+    user_id = HiddenField('user_id', validators=[InputRequired()])
+    location = TextAreaField(
+        'location',
+        validators=[InputRequired(), Length(min=10)],
+        render_kw={"placeholder": "Where is it located ? (Min. 10 symbols)"})
+    description = TextAreaField(
+        'description',
+        validators=[InputRequired(), Length(min=10)],
+        render_kw={"placeholder"
+                   : "A description of your apartment. (Min. 10 symbols)"})
+    price = FloatField('price',
+                       validators=[InputRequired(), NumberRange(min=1)])
+
+
 class CommentForm(FlaskForm):
     user_id = HiddenField('user_id', validators=[InputRequired()])
     apartment_id = HiddenField('apartment_id', validators=[InputRequired()])

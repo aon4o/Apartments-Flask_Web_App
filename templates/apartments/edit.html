@@ -11,7 +11,6 @@
     <label>Description: </label><br>{{ form.description (value=apartment.description, rows='10',cols='100')}}<br>
     <label>Price: </label><br>{{ form.price (value=apartment.price, rows='2',cols='30') }}<br><br>
     {# TODO set default image #}
-    <label>Image: </label><br>{{ form.image (value=url_for('static', filename='images/' + apartment.image)) }}<br><br>
     <button type="submit">Edit Apartment</button>
   </form>
 {% endblock body %}
