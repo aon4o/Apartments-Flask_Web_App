@@ -1,3 +1,11 @@
+"""
+This file is used for defining the more complicated forms used in the app.
+Each class here is a different form.
+Modules used:
+    WTForms, Flask-WTF - for the form creation, diff fields used and validation
+    Werkzeug - for hashing passwords
+    Flask-Uploads - for
+"""
 from app_config import app
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
@@ -5,7 +13,6 @@ from wtforms import StringField, TextAreaField, PasswordField, BooleanField, \
     HiddenField, FloatField
 from wtforms.validators import InputRequired, Length, NumberRange
 from werkzeug.security import generate_password_hash, check_password_hash
-from werkzeug.utils import secure_filename
 from flask_uploads import configure_uploads, UploadSet, IMAGES
 
 images = UploadSet('images', IMAGES)

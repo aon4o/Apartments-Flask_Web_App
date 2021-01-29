@@ -1,3 +1,7 @@
+"""
+This file is used to configure the login_manager form module Flask-Login
+using the User class from the database
+"""
 from app_config import app
 from flask_login import LoginManager, login_user, login_required, \
     logout_user, current_user

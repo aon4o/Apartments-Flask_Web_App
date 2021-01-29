@@ -1,3 +1,10 @@
+"""
+This file does the basic configuration for the application:
+    the secret key,
+    the database uri - used by SQLAlchemy,
+    the folder for saving images
+and other setting may be added here.
+"""
 from flask import Flask
 
 app = Flask(__name__)

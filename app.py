@@ -1,21 +1,29 @@
+"""
+This is the routing file - it renders the correct resources for each page and
+    does almost all of the logic of the app.
+Here we include everything we need for the logic from the other python files
+    where it's already included so its better ordered here
+"""
 from app_config import app
-import os
 from flask import url_for, request, redirect, render_template, flash
 from database import db, User, Apartment, Comment
 from forms import generate_password_hash, check_password_hash, \
     LoginForm, RegistrationForm, ApartmentForm, ApartmentEditForm,\
-    CommentForm, secure_filename, images
+    CommentForm, images
 from login_manager import login_required, login_user, \
     logout_user, current_user
 import logging
 
+# creates all the tables
 db.create_all()
+# configures the format of the logs
 logging.basicConfig(filename='logs.log',
                     format='%(levelname)s  %(asctime)s : %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 
 
 # BASIC NAVIGATION
+# These routes only load static html files.
 @app.route('/home')
 def index():
     return render_template('index.html')
@@ -37,6 +45,7 @@ def contact():
 
 
 # AUTHENTICATION
+# These routes are used for register,  login and logout
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
@@ -237,6 +246,7 @@ def comment_edit():
 
 
 # ERROR CODE HANDLERS
+# These routes define the behaviour on error codes 404 and 405
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('errors/404.html'), 404
